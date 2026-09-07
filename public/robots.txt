@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Unofficial educational simulation. Not an MIT or Koch Institute product.

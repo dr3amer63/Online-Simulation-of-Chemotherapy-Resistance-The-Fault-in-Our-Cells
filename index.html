@@ -2,16 +2,105 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0c0c0e" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index,follow" />
+
     <title>The Fault in Our Cells · Online Bead Simulation</title>
     <meta
       name="description"
-      content="Unofficial online bead simulation of tumor heterogeneity and chemotherapy resistance, adapted from MIT BLOSSOMS / Koch Institute lesson The Fault in Our Cells."
+      content="Unofficial online bead simulation of tumor heterogeneity and chemotherapy resistance, adapted from the MIT BLOSSOMS / Koch Institute lesson The Fault in Our Cells."
     />
-    <meta name="theme-color" content="#0c0c0e" />
+    <meta name="author" content="Mwihaki" />
+    <meta
+      name="keywords"
+      content="chemotherapy resistance, tumor heterogeneity, bead simulation, cancer education, MIT BLOSSOMS"
+    />
+    <meta name="application-name" content="The Fault in Our Cells" />
+    <meta name="apple-mobile-web-app-title" content="Fault in Our Cells" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#0c0c0e" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#e8ff47" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Fault in Our Cells" />
+    <meta
+      property="og:title"
+      content="The Fault in Our Cells · Online Bead Simulation"
+    />
+    <meta
+      property="og:description"
+      content="Run the classroom bead lab in the browser: see a tumor grow, take chemo, and watch resistance. No beads required."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta
+      property="og:image:alt"
+      content="Five colored beads beside the title The Fault in Our Cells"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="The Fault in Our Cells · Online Bead Simulation"
+    />
+    <meta
+      name="twitter:description"
+      content="Unofficial browser version of the MIT BLOSSOMS bead lab on chemotherapy resistance."
+    />
+    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Five colored beads beside the title The Fault in Our Cells"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "The Fault in Our Cells: Online Bead Simulation",
+        "description": "Unofficial interactive bead simulation of tumor heterogeneity and chemotherapy resistance.",
+        "learningResourceType": "Interactive simulation",
+        "isAccessibleForFree": true,
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Mwihaki",
+          "url": "https://www.linkedin.com/in/dorcas-ndungu/"
+        },
+        "contributor": [
+          { "@type": "Person", "name": "Rachel Leeson" },
+          { "@type": "Person", "name": "Simona Dalin" },
+          { "@type": "Person", "name": "Emma Sedivy" }
+        ],
+        "isBasedOn": {
+          "@type": "LearningResource",
+          "name": "Chemotherapy Resistance: The Fault in Our Cells",
+          "url": "https://web.mit.edu/blossoms/videos/lessons/chemotherapy_resistance_fault_our_cells/"
+        },
+        "license": "https://opensource.org/license/mit"
+      }
+    </script>
   </head>
   <body>
+    <noscript>
+      This simulation needs JavaScript. Please enable it to run the bead lab
+      in your browser.
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

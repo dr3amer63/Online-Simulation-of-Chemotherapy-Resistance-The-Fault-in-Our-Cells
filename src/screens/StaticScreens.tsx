@@ -27,9 +27,11 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
 export function MappingScreen({
   config,
   onContinue,
+  onExplore,
 }: {
   config: AppConfig
   onContinue: () => void
+  onExplore: () => void
 }) {
   return (
     <section className="screen">
@@ -102,9 +104,12 @@ export function MappingScreen({
         </div>
       </div>
 
-      <div className="actions">
+      <div className="actions actions--wrap">
         <button type="button" className="btn btn--primary" onClick={onContinue}>
           I understand: run simulation
+        </button>
+        <button type="button" className="btn" onClick={onExplore}>
+          Change setup (Explore)
         </button>
       </div>
       <SiteFooter />

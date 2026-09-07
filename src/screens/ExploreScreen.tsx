@@ -16,9 +16,10 @@ import {
 interface Props {
   base: AppConfig
   onRerunFull: (cfg: AppConfig) => void
+  onBack: () => void
 }
 
-export function ExploreScreen({ base, onRerunFull }: Props) {
+export function ExploreScreen({ base, onRerunFull, onBack }: Props) {
   const [resistant, setResistant] = useState<BeadColor[]>(base.resistant)
   const [noResistance, setNoResistance] = useState(base.noResistance)
   const [pullsPerInterval, setPullsPerInterval] = useState(
@@ -151,7 +152,10 @@ export function ExploreScreen({ base, onRerunFull }: Props) {
           className="btn"
           onClick={() => onRerunFull(cfg)}
         >
-          Replay full guided sim with these settings
+          Run full guided sim with these settings
+        </button>
+        <button type="button" className="btn" onClick={onBack}>
+          Back
         </button>
       </div>
 
