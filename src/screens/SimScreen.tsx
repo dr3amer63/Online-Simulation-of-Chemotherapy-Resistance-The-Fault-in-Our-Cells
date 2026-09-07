@@ -252,14 +252,14 @@ export function SimScreen({ config, onComplete }: Props) {
   )
 
   const nextHint = (() => {
-    if (reviewing) return `Back to ${phaseLabel(progressPhase)}`
-    if (progressPhase === 'ready') return 'Begin growth'
+    if (reviewing) return 'Resume'
+    if (progressPhase === 'ready') return 'Start growth'
     if (progressPhase === 'run-end') {
-      return replicate < 3 ? 'Next replicate' : 'See results'
+      return replicate < 3 ? 'Next run' : 'See results'
     }
     const idx = phaseTrack.indexOf(progressPhase)
     if (idx >= 0 && idx < phaseTrack.length - 1) {
-      return `Next: ${phaseLabel(phaseTrack[idx + 1])}`
+      return `Next ${phaseLabel(phaseTrack[idx + 1]).toLowerCase()}`
     }
     if (progressPhase === 'cycle-end') {
       return cycleIndex + 1 < 5 ? 'Next cycle' : 'Finish run'

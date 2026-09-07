@@ -16,10 +16,9 @@ import {
 interface Props {
   base: AppConfig
   onRerunFull: (cfg: AppConfig) => void
-  onBack: () => void
 }
 
-export function ExploreScreen({ base, onRerunFull, onBack }: Props) {
+export function ExploreScreen({ base, onRerunFull }: Props) {
   const [resistant, setResistant] = useState<BeadColor[]>(base.resistant)
   const [noResistance, setNoResistance] = useState(base.noResistance)
   const [pullsPerInterval, setPullsPerInterval] = useState(
@@ -138,24 +137,21 @@ export function ExploreScreen({ base, onRerunFull, onBack }: Props) {
             className="btn btn--small"
             onClick={() => setGrowth(defaultGrowthRates())}
           >
-            Reset MIT growth rates
+            Reset growth
           </button>
         </div>
       </div>
 
       <div className="actions actions--wrap">
         <button type="button" className="btn btn--primary" onClick={runPreview}>
-          Preview 3 quick runs
+          Preview runs
         </button>
         <button
           type="button"
           className="btn"
           onClick={() => onRerunFull(cfg)}
         >
-          Run full guided sim with these settings
-        </button>
-        <button type="button" className="btn" onClick={onBack}>
-          Back
+          Run simulation
         </button>
       </div>
 

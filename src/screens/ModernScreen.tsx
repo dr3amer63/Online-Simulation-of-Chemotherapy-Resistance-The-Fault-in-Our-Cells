@@ -20,7 +20,7 @@ export function ModernScreen({ onExplore, onCredits }: Props) {
       </div>
       <div className="actions actions--wrap">
         <button type="button" className="btn btn--primary" onClick={onExplore}>
-          Explore with grounded knobs
+          Open Explore
         </button>
         <button type="button" className="btn" onClick={onCredits}>
           Credits

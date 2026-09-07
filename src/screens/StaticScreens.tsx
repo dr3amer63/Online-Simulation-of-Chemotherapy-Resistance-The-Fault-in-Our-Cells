@@ -17,7 +17,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
           className="btn btn--primary intro-cta"
           onClick={onStart}
         >
-          Start Simulation
+          Start sim
         </button>
       </div>
     </section>
@@ -106,10 +106,10 @@ export function MappingScreen({
 
       <div className="actions actions--wrap">
         <button type="button" className="btn btn--primary" onClick={onContinue}>
-          I understand: run simulation
+          Run simulation
         </button>
         <button type="button" className="btn" onClick={onExplore}>
-          Change setup (Explore)
+          Change setup
         </button>
       </div>
       <SiteFooter />
@@ -117,7 +117,7 @@ export function MappingScreen({
   )
 }
 
-export function CreditsScreen({ onBack }: { onBack: () => void }) {
+export function CreditsScreen() {
   return (
     <section className="screen">
       <header className="screen__header">
@@ -156,11 +156,6 @@ export function CreditsScreen({ onBack }: { onBack: () => void }) {
           with {CREDITS.adapterWith}. Unofficial interactive port of their
           classroom bead lab.
         </p>
-      </div>
-      <div className="actions">
-        <button type="button" className="btn" onClick={onBack}>
-          Back
-        </button>
       </div>
       <SiteFooter />
     </section>

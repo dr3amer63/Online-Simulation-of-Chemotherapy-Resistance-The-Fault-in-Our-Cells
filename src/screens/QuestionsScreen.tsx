@@ -59,7 +59,7 @@ export function QuestionsScreen({ onContinue }: Props) {
         <div className="actions">
           {!submitted ? (
             <button type="submit" className="btn btn--primary">
-              Submit and show model answers
+              Show answers
             </button>
           ) : (
             <>
@@ -68,7 +68,7 @@ export function QuestionsScreen({ onContinue }: Props) {
                 className="btn btn--primary"
                 onClick={onContinue}
               >
-                Leave when ready
+                Continue
               </button>
               <p className="hint stay-hint">
                 Answers stay on this page until you leave.

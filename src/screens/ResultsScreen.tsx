@@ -70,7 +70,7 @@ export function ResultsScreen({ runs, onContinue }: Props) {
 
       <div className="actions">
         <button type="button" className="btn btn--primary" onClick={onContinue}>
-          Continue to questions
+          Next questions
         </button>
       </div>
       <p className="hint stay-hint">

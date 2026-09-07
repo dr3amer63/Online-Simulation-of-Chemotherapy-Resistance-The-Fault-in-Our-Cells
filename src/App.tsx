@@ -167,7 +167,6 @@ function App() {
         {screen === 'explore' ? (
           <ExploreScreen
             base={config}
-            onBack={goBack}
             onRerunFull={(cfg) => {
               setConfig(cfg)
               setRuns([])
@@ -176,9 +175,7 @@ function App() {
             }}
           />
         ) : null}
-        {screen === 'credits' ? (
-          <CreditsScreen onBack={goBack} />
-        ) : null}
+        {screen === 'credits' ? <CreditsScreen /> : null}
       </main>
     </div>
   )
