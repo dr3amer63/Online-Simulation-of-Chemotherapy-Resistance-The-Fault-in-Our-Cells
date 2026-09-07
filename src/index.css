@@ -81,6 +81,15 @@ a:hover {
   top: 0.5rem;
 }
 
+noscript {
+  display: block;
+  margin: 0;
+  padding: 0.75rem var(--pad);
+  background: #e8ff47;
+  color: #12120a;
+  font-weight: 600;
+}
+
 .top-nav {
   display: flex;
   align-items: center;
@@ -96,11 +105,36 @@ a:hover {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
   font-family: var(--mono);
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.brand:hover {
+  color: var(--ink);
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
 .top-nav__links {
@@ -167,6 +201,28 @@ main {
   max-width: 38rem;
 }
 
+.screen--intro {
+  gap: 0.85rem;
+}
+
+.screen--intro .btn--primary {
+  margin-top: 0.35rem;
+  order: 10;
+}
+
+.screen--intro .site-footer--wide-only {
+  order: 11;
+  width: min(100%, 38rem);
+}
+
+.intro-lede {
+  display: none;
+}
+
+.site-footer--wide-only {
+  display: none;
+}
+
 .screen__header h1,
 .display {
   font-size: clamp(1.75rem, 5vw, 2.75rem);
@@ -191,8 +247,8 @@ main {
 }
 
 .hook {
-  font-size: clamp(1.1rem, 3vw, 1.35rem);
-  margin: 0.5rem 0 1rem;
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  margin: 0.25rem 0 0;
 }
 
 .btn {
@@ -750,6 +806,18 @@ main {
 }
 
 @media (min-width: 720px) {
+  .intro-lede {
+    display: block;
+  }
+
+  .site-footer--wide-only {
+    display: block;
+  }
+
+  .screen--intro {
+    gap: 1.25rem;
+  }
+
   .results-grid {
     grid-template-columns: repeat(2, 1fr);
   }

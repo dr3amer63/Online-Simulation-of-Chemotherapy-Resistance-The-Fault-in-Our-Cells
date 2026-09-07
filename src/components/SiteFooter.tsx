@@ -1,10 +1,15 @@
-import { CREDITS, instructorNames } from '../content/credits'
+import { CREDITS } from '../content/credits'
 
-export function SiteFooter() {
+interface Props {
+  className?: string
+}
+
+export function SiteFooter({ className = '' }: Props) {
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer ${className}`.trim()}>
       <p>
-        Lesson by {instructorNames} ({CREDITS.program} / {CREDITS.institution}).
+        Lesson by {CREDITS.instructors.map((i) => i.name).join(', ')} (
+        {CREDITS.program} / {CREDITS.institution}).
       </p>
       <p>
         Based on{' '}

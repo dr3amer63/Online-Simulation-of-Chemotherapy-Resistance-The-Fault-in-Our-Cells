@@ -5,10 +5,10 @@ import type { AppConfig } from '../app/types'
 
 export function IntroScreen({ onStart }: { onStart: () => void }) {
   return (
-    <section className="screen screen--center">
+    <section className="screen screen--center screen--intro">
       <p className="eyebrow">{CREDITS.program}</p>
       <h1 className="display">The Fault in Our Cells</h1>
-      <p className="lede">
+      <p className="lede intro-lede">
         An online bead simulation of tumor heterogeneity and chemotherapy
         resistance - a direct digital translation of the classroom lab from the
         Koch Institute / MIT BLOSSOMS.
@@ -19,7 +19,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
       <button type="button" className="btn btn--primary" onClick={onStart}>
         Start Simulation
       </button>
-      <SiteFooter />
+      <SiteFooter className="site-footer--wide-only" />
     </section>
   )
 }
