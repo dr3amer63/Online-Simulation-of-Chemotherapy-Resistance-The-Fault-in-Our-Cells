@@ -1,0 +1,28 @@
+# Attribution
+
+This repository is an **unofficial** interactive adaptation of:
+
+**Chemotherapy Resistance: The Fault in Our Cells**  
+MIT BLOSSOMS / Koch Institute for Integrative Cancer Research at MIT
+
+## Original lesson contributors (instructors)
+
+- **Rachel Leeson**, Outreach Assistant, Koch Institute for Integrative Cancer Research at MIT
+- **Simona Dalin**, Ph.D. candidate, MIT Department of Biology / Koch Institute
+- **Emma Sedivy**, Ph.D. candidate, MIT Department of Biology / Koch Institute
+
+Official lesson:  
+https://web.mit.edu/blossoms/videos/lessons/chemotherapy_resistance_fault_our_cells/
+
+## Online simulation adaptation
+
+- **Mwihaki** (https://www.linkedin.com/in/dorcas-ndungu/)
+
+The simulation rules, pedagogy, and source question themes originate from the
+instructors’ MIT BLOSSOMS / Koch materials. This software is not an official
+MIT or Koch Institute product. Trademarks and original lesson materials remain
+with their respective owners.
+
+See also [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+Software license for code in this repository: see LICENSE (MIT).
