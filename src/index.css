@@ -202,25 +202,16 @@ main {
 }
 
 .screen--intro {
-  gap: 0.85rem;
+  gap: 1rem;
+  padding-top: clamp(2rem, 12vh, 5rem);
 }
 
 .screen--intro .btn--primary {
-  margin-top: 0.35rem;
-  order: 10;
+  margin-top: 0.5rem;
 }
 
-.screen--intro .site-footer--wide-only {
-  order: 11;
-  width: min(100%, 38rem);
-}
-
-.intro-lede {
-  display: none;
-}
-
-.site-footer--wide-only {
-  display: none;
+.screen--intro .hook {
+  max-width: 28rem;
 }
 
 .screen__header h1,
@@ -806,18 +797,6 @@ main {
 }
 
 @media (min-width: 720px) {
-  .intro-lede {
-    display: block;
-  }
-
-  .site-footer--wide-only {
-    display: block;
-  }
-
-  .screen--intro {
-    gap: 1.25rem;
-  }
-
   .results-grid {
     grid-template-columns: repeat(2, 1fr);
   }

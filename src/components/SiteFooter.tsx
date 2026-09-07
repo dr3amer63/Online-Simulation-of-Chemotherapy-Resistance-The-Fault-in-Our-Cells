@@ -1,12 +1,8 @@
 import { CREDITS } from '../content/credits'
 
-interface Props {
-  className?: string
-}
-
-export function SiteFooter({ className = '' }: Props) {
+export function SiteFooter() {
   return (
-    <footer className={`site-footer ${className}`.trim()}>
+    <footer className="site-footer">
       <p>
         Lesson by {CREDITS.instructors.map((i) => i.name).join(', ')} (
         {CREDITS.program} / {CREDITS.institution}).
