@@ -181,6 +181,13 @@ main {
   margin: 0 auto;
   padding: var(--pad);
   padding-bottom: calc(var(--pad) + 1rem);
+  display: flex;
+  flex-direction: column;
+}
+
+main:has(.screen--intro) {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .screen {
@@ -202,16 +209,48 @@ main {
 }
 
 .screen--intro {
-  gap: 1rem;
-  padding-top: clamp(2rem, 12vh, 5rem);
+  flex: 1;
+  min-height: calc(100dvh - 4.5rem);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  padding: clamp(1.5rem, 4vh, 3rem) 0 clamp(3rem, 10vh, 5.5rem);
 }
 
-.screen--intro .btn--primary {
-  margin-top: 0.5rem;
+.intro-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 34rem);
+  gap: clamp(0.9rem, 2.4vh, 1.4rem);
 }
 
-.screen--intro .hook {
-  max-width: 28rem;
+.intro-title {
+  margin: 0;
+  width: 100%;
+  text-wrap: balance;
+  font-size: clamp(2rem, 6.5vw, 3.15rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.intro-hook {
+  margin: 0;
+  max-width: 26rem;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.intro-cta {
+  margin-top: clamp(0.55rem, 1.8vh, 1.1rem);
+  min-width: min(100%, 14rem);
+  padding: 0.9rem 1.7rem;
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
 }
 
 .screen__header h1,

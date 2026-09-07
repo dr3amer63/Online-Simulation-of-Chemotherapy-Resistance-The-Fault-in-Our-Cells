@@ -5,15 +5,21 @@ import type { AppConfig } from '../app/types'
 
 export function IntroScreen({ onStart }: { onStart: () => void }) {
   return (
-    <section className="screen screen--center screen--intro">
-      <p className="eyebrow">{CREDITS.program}</p>
-      <h1 className="display">The Fault in Our Cells</h1>
-      <p className="hook">
-        Do you think all the cancer cells in a tumor have the same mutations?
-      </p>
-      <button type="button" className="btn btn--primary" onClick={onStart}>
-        Start Simulation
-      </button>
+    <section className="screen screen--intro">
+      <div className="intro-stage">
+        <p className="eyebrow">{CREDITS.program}</p>
+        <h1 className="display intro-title">The Fault in Our Cells</h1>
+        <p className="hook intro-hook">
+          Do you think all the cancer cells in a tumor have the same mutations?
+        </p>
+        <button
+          type="button"
+          className="btn btn--primary intro-cta"
+          onClick={onStart}
+        >
+          Start Simulation
+        </button>
+      </div>
     </section>
   )
 }
