@@ -340,6 +340,12 @@ main:has(.screen--intro) {
   transform: translateY(0);
 }
 
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+  transform: none;
+}
+
 .btn--primary {
   background: var(--accent);
   color: var(--accent-ink);

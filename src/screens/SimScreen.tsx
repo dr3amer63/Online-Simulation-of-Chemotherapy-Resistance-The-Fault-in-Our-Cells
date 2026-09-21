@@ -78,11 +78,12 @@ export function SimScreen({ config, onComplete }: Props) {
 
   const log: CycleLog | null = currentRun?.logs[cycleIndex] ?? null
   const reviewing = viewPhase !== progressPhase
+  const totalCycles = config.cycles
   const cycleNum =
     progressPhase === 'ready'
       ? 0
       : progressPhase === 'run-end'
-        ? 5
+        ? totalCycles
         : cycleIndex + 1
 
   const showPhaseSnapshot = (phase: Phase, activeLog: CycleLog) => {
@@ -215,7 +216,6 @@ export function SimScreen({ config, onComplete }: Props) {
         setProgressPhase('grow')
         showPhaseSnapshot('grow', currentRun.logs[nextCycle])
       } else {
-        setAuto(false)
         setProgressPhase('run-end')
         setViewPhase('run-end')
         setHighlight(null)
@@ -238,10 +238,25 @@ export function SimScreen({ config, onComplete }: Props) {
 
   useEffect(() => {
     if (!auto || reviewing) return
-    if (progressPhase === 'run-end' || progressPhase === 'ready') return
-    const t = window.setTimeout(() => advanceRef.current(), STEP_MS)
+    const delay =
+      progressPhase === 'ready' || progressPhase === 'run-end' ? 700 : STEP_MS
+    const t = window.setTimeout(() => advanceRef.current(), delay)
     return () => clearTimeout(t)
   }, [auto, progressPhase, viewPhase, cycleIndex, currentRun, replicate, reviewing])
+
+  const startOrPauseAuto = () => {
+    if (auto) {
+      setAuto(false)
+      return
+    }
+    if (reviewing) returnToProgress()
+    setAuto(true)
+  }
+
+  const advanceManual = () => {
+    if (auto) setAuto(false)
+    advance()
+  }
 
   const steps = useMemo(
     () =>
@@ -252,6 +267,7 @@ export function SimScreen({ config, onComplete }: Props) {
   )
 
   const nextHint = (() => {
+    if (auto) return 'Running…'
     if (reviewing) return 'Resume'
     if (progressPhase === 'ready') return 'Start growth'
     if (progressPhase === 'run-end') {
@@ -262,7 +278,7 @@ export function SimScreen({ config, onComplete }: Props) {
       return `Next ${phaseLabel(phaseTrack[idx + 1]).toLowerCase()}`
     }
     if (progressPhase === 'cycle-end') {
-      return cycleIndex + 1 < 5 ? 'Next cycle' : 'Finish run'
+      return cycleIndex + 1 < totalCycles ? 'Next cycle' : 'Finish run'
     }
     return 'Next'
   })()
@@ -283,9 +299,9 @@ export function SimScreen({ config, onComplete }: Props) {
     <section className="screen screen--sim">
       <header className="sim-hud">
         <div>
-          <p className="eyebrow">Simulation</p>
+          <p className="eyebrow">Experiment</p>
           <h1>
-            Run {replicate}/3 · Cycle {cycleNum}/5
+            Run {replicate}/3 · Cycle {cycleNum}/{totalCycles}
           </h1>
         </div>
         <div className="sim-hud__meta">
@@ -297,14 +313,14 @@ export function SimScreen({ config, onComplete }: Props) {
           <button
             type="button"
             className={`btn btn--small btn--primary${auto ? ' is-auto-on' : ''}`}
-            onClick={() => setAuto((a) => !a)}
+            onClick={startOrPauseAuto}
             title={
               auto
-                ? 'Pause automatic stepping'
-                : 'Play through steps without tapping Next each time'
+                ? 'Pause'
+                : 'Play all cycles and all 3 runs without tapping'
             }
           >
-            {auto ? 'Pause' : 'Auto run'}
+            {auto ? 'Pause' : 'Play all'}
           </button>
         </div>
       </header>
@@ -315,6 +331,7 @@ export function SimScreen({ config, onComplete }: Props) {
             {total(displayCounts)} cells
             {viewPhase !== 'ready' ? ` · ${phaseLabel(viewPhase)}` : ''}
             {reviewing ? ' · review' : ''}
+            {auto && !reviewing ? ' · playing' : ''}
           </div>
           <div className="sim-stage">
             <BeadCanvas counts={displayCounts} highlight={highlight} />
@@ -323,7 +340,11 @@ export function SimScreen({ config, onComplete }: Props) {
 
         <aside className="sim-side">
           <div className="panel panel--status">
-            <p className="phase-hint">Tap a reached step to check its numbers</p>
+            <p className="phase-hint">
+              {auto
+                ? 'Playing through to the end — Pause anytime'
+                : 'Tap a reached step to check its numbers'}
+            </p>
             <ol className="phase-steps" aria-label="Cycle phases">
               {steps.map((step) => {
                 const stepIdx = phaseTrack.indexOf(step)
@@ -389,7 +410,12 @@ export function SimScreen({ config, onComplete }: Props) {
 
           <CompositionBars title="Tumor mix" counts={displayCounts} />
 
-          <button type="button" className="btn btn--primary" onClick={advance}>
+          <button
+            type="button"
+            className="btn btn--primary"
+            onClick={advanceManual}
+            disabled={auto}
+          >
             {nextHint}
           </button>
         </aside>
