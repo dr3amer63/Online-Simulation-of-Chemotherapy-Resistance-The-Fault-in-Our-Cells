@@ -47,7 +47,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'triplicate',
     prompt:
-      'Why run the simulation three times (in triplicate)? What did the differences between runs show?',
+      'Why run the experiment three times (in triplicate)? What did the differences between runs show?',
     modelAnswer:
       'Assessment Option C asks for resistance groups run in triplicate so you can see averages and variation. Because chemo pulls cells at random, each run differs slightly - like experimental noise. Comparing means across replicates is more trustworthy than one lucky (or unlucky) run.',
   },

@@ -15,7 +15,7 @@ export function SiteFooter() {
         .
       </p>
       <p>
-        Online simulation by{' '}
+        Online version by{' '}
         <a href={CREDITS.adapterUrl} target="_blank" rel="noreferrer">
           {CREDITS.adapterName}
         </a>{' '}

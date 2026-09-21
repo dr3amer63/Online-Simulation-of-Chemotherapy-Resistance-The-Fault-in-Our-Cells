@@ -3,7 +3,7 @@
 Unofficial interactive web port of the MIT BLOSSOMS / Koch Institute classroom bead lab
 **[Chemotherapy Resistance: The Fault in Our Cells](https://web.mit.edu/blossoms/videos/lessons/chemotherapy_resistance_fault_our_cells/)**.
 
-This project turns the paper-bag bead activity into a browser simulation so learners can see tumor heterogeneity and chemotherapy resistance, then answer reflection questions (model answers shown after submit; no grading).
+This project turns the paper-bag bead activity into a browser lab so learners can see tumor heterogeneity and chemotherapy resistance, then answer reflection questions (model answers shown after submit; no grading).
 
 | | |
 | --- | --- |
@@ -14,7 +14,7 @@ This project turns the paper-bag bead activity into a browser simulation so lear
 
 ## Features
 
-- Pre-sim mapping of beads to real biology concepts
+- Pre-lab mapping of beads to real biology concepts
 - Guided 30s-style intervals with clear phase state (Growth → Chemo → Resistance)
 - Clickable phase pills to review earlier step numbers, then continue
 - Three replicate runs (triplicate), matching the lab’s statistics option
@@ -23,15 +23,15 @@ This project turns the paper-bag bead activity into a browser simulation so lear
 - Explore knobs limited to parameters that exist in the lab model
 - Responsive layout for phone, tablet, and desktop
 
-## How the simulation works
+## How the model works
 
-The engine follows the MIT simulation rules:
+The engine follows the MIT bead-lab rules (extended to 10 intervals online):
 
 1. **Start:** 10 beads of each color (pink, orange, yellow, purple, green) = the tumor.
 2. **Growth (every 30s):** add one “cup”: Pink +1, Orange +1, Yellow +2, Purple +2, Green +3.
 3. **Chemo:** remove beads one-by-one at random (blind).
 4. **Resistance:** when 3 beads of one assigned resistant color are in the dead pile, return 2 to the tumor.
-5. **Duration:** 3 minutes → **5** growth intervals (growth at 0:30 … 2:30; stop at 3:00 with no extra cup).
+5. **Duration:** **10** growth intervals per run (classroom video uses 5 in 3 minutes; this port doubles that for a longer look).
 6. **Replicates:** run the experiment **3 times** (triplicate).
 
 **Digital-only stand-in:** the paper lab does not fix how many beads the “chemo” student pulls. Pull speed is whatever the student does by hand. This app uses a default of **16 blind pulls per 30s interval** so no-resistance tumors shrink on a similar scale to the teacher guide’s sample board. That value is adjustable in Explore and is labeled as pull speed, not as biology.
@@ -41,8 +41,8 @@ src/
   app/           Screen flow types and session config
   components/    Bead canvas, composition bars, footer
   content/       Colors, credits, questions, science note
-  screens/       Intro → mapping → sim → results → questions → …
-  sim/           MIT-rule simulation engine
+  screens/       Intro → mapping → run → results → questions → …
+  sim/           MIT-rule engine
 ```
 
 ## Requirements

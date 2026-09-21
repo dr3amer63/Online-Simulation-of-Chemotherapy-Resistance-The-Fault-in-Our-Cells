@@ -21,7 +21,7 @@ export function QuestionsScreen({ onContinue }: Props) {
     <section className="screen">
       <header className="screen__header">
         <p className="eyebrow">Questions</p>
-        <h1>Reflect on the simulation</h1>
+        <h1>Reflection</h1>
         <p className="lede">
           Prompts adapted from MIT BLOSSOMS / Koch Institute teacher guide,
           handout, and assessment options. Write in your own words, then submit

@@ -159,5 +159,5 @@ export function BeadCanvas({ counts, highlight }: Props) {
     }
   }, [counts, highlight])
 
-  return <canvas ref={canvasRef} className="bead-canvas" aria-label="Tumor bead simulation" />
+  return <canvas ref={canvasRef} className="bead-canvas" aria-label="Tumor bead model" />
 }

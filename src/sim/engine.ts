@@ -5,7 +5,7 @@
 import { COLOR_IDS, COLORS, type BeadColor } from '../content/colors'
 
 export const START_COUNT = 10
-export const CYCLES_PER_RUN = 5
+export const CYCLES_PER_RUN = 10
 export const REPLICATE_COUNT = 3
 export const RESISTANCE_TRIGGER = 3
 export const RESISTANCE_RETURN = 2

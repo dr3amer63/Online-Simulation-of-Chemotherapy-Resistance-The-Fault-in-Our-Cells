@@ -2,6 +2,7 @@
  * Quick smoke checks for MIT-rule invariants (run via: npx --yes tsx scripts/smoke-sim.ts)
  */
 import {
+  CYCLES_PER_RUN,
   DEFAULT_PULLS_PER_INTERVAL,
   defaultGrowthRates,
   runOneReplicate,
@@ -23,11 +24,11 @@ const control = runOneReplicate(
     resistant: [],
     growth,
     pullsPerInterval: DEFAULT_PULLS_PER_INTERVAL,
-    cycles: 5,
+    cycles: CYCLES_PER_RUN,
   },
   1,
 )
-assert(control.logs.length === 5, 'five intervals')
+assert(control.logs.length === CYCLES_PER_RUN, `${CYCLES_PER_RUN} intervals`)
 assert(control.total < 50, 'no-resistance tumor should shrink with default pulls')
 
 const resistant = runOneReplicate(
@@ -35,7 +36,7 @@ const resistant = runOneReplicate(
     resistant: ['green', 'purple'],
     growth,
     pullsPerInterval: DEFAULT_PULLS_PER_INTERVAL,
-    cycles: 5,
+    cycles: CYCLES_PER_RUN,
   },
   1,
 )
@@ -51,7 +52,7 @@ const trips = runTriplicate({
   resistant: ['yellow', 'pink'],
   growth,
   pullsPerInterval: DEFAULT_PULLS_PER_INTERVAL,
-  cycles: 5,
+  cycles: CYCLES_PER_RUN,
 })
 assert(trips.length === 3, 'triplicate should produce 3 runs')
 

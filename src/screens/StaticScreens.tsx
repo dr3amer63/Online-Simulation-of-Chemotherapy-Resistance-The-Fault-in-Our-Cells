@@ -17,7 +17,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
           className="btn btn--primary intro-cta"
           onClick={onStart}
         >
-          Start sim
+          Start
         </button>
       </div>
     </section>
@@ -48,7 +48,7 @@ export function MappingScreen({
         <table className="map-table">
           <thead>
             <tr>
-              <th>In the simulation</th>
+              <th>In this model</th>
               <th>In real chemo resistance</th>
             </tr>
           </thead>
@@ -90,7 +90,7 @@ export function MappingScreen({
             (3 dead of one color → 2 back)
           </li>
           <li>
-            3 minutes → <strong>5 intervals</strong>; experiment run{' '}
+            <strong>{config.cycles} intervals</strong> per run; experiment run{' '}
             <strong>3 times</strong> (triplicate)
           </li>
         </ul>
@@ -106,7 +106,7 @@ export function MappingScreen({
 
       <div className="actions actions--wrap">
         <button type="button" className="btn btn--primary" onClick={onContinue}>
-          Run simulation
+          Begin run
         </button>
         <button type="button" className="btn" onClick={onExplore}>
           Change setup
@@ -147,7 +147,7 @@ export function CreditsScreen() {
         </p>
       </div>
       <div className="panel">
-        <h2>Online simulation adaptation</h2>
+        <h2>Online adaptation</h2>
         <p>
           Built by{' '}
           <a href={CREDITS.adapterUrl} target="_blank" rel="noreferrer">

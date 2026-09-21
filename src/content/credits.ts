@@ -41,7 +41,11 @@ export const MAPPING_ROWS: { sim: string; real: string }[] = [
     sim: 'Return 2 when 3 same resistant color die',
     real: 'Those clones are resistant and survive treatment',
   },
-  { sim: '5 cycles per run', real: 'Time under growth + treatment' },
+  {
+    sim: 'One cycle (Growth → Chemo → Resistance)',
+    real: 'One treatment interval: divide, random kill, then resistant clones may return',
+  },
+  { sim: '10 cycles per run', real: 'Time under growth + treatment' },
   {
     sim: '3 replicate runs',
     real: 'Repeating the experiment - chance variation, like a real lab',

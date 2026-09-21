@@ -1,7 +1,7 @@
 {
   "name": "The Fault in Our Cells",
   "short_name": "Fault in Our Cells",
-  "description": "Unofficial online bead simulation of tumor heterogeneity and chemotherapy resistance.",
+  "description": "Unofficial online bead lab on tumor heterogeneity and chemotherapy resistance.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

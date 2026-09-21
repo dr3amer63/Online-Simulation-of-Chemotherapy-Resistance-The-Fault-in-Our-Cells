@@ -151,7 +151,7 @@ export function ExploreScreen({ base, onRerunFull }: Props) {
           className="btn"
           onClick={() => onRerunFull(cfg)}
         >
-          Run simulation
+          Begin run
         </button>
       </div>
 
