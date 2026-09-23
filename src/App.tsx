@@ -16,7 +16,8 @@ import { ResultsScreen } from './screens/ResultsScreen'
 import { QuestionsScreen } from './screens/QuestionsScreen'
 import { ModernScreen } from './screens/ModernScreen'
 import { ExploreScreen } from './screens/ExploreScreen'
-import { CREDITS } from './content/credits'
+import { SiteNav } from './components/SiteNav'
+import { QUESTIONS } from './content/questions'
 
 const FLOW_BACK: Partial<Record<Screen, Screen>> = {
   mapping: 'intro',
@@ -26,6 +27,8 @@ const FLOW_BACK: Partial<Record<Screen, Screen>> = {
   modern: 'questions',
 }
 
+const SIDE_SCREENS: Screen[] = ['explore', 'credits', 'questions', 'modern', 'results']
+
 function App() {
   const [screen, setScreen] = useState<Screen>('intro')
   const [config, setConfig] = useState<AppConfig>(() =>
@@ -33,13 +36,22 @@ function App() {
   )
   const [runs, setRuns] = useState<RunResult[]>([])
   const [returnScreen, setReturnScreen] = useState<Screen>('modern')
+  const [answers, setAnswers] = useState<Record<string, string>>(() =>
+    Object.fromEntries(QUESTIONS.map((q) => [q.id, ''])),
+  )
+  const [questionsSubmitted, setQuestionsSubmitted] = useState(false)
+
+  const openSide = (next: Screen) => {
+    if (screen !== next) {
+      setReturnScreen(SIDE_SCREENS.includes(screen) ? returnScreen : screen)
+    }
+    setScreen(next)
+  }
 
   const goBack = () => {
-    if (screen === 'explore' || screen === 'credits') {
+    if (SIDE_SCREENS.includes(screen)) {
       setScreen(
-        returnScreen === 'explore' || returnScreen === 'credits'
-          ? 'mapping'
-          : returnScreen,
+        SIDE_SCREENS.includes(returnScreen) ? 'mapping' : returnScreen,
       )
       return
     }
@@ -47,81 +59,18 @@ function App() {
     if (prev) setScreen(prev)
   }
 
-  const canGoBack = screen !== 'intro'
-
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <nav className="top-nav" aria-label="Primary">
-        <div className="top-nav__left">
-          {canGoBack ? (
-            <button
-              type="button"
-              className="nav-back"
-              onClick={goBack}
-              aria-label="Go back"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M15 6 9 12l6 6"
-                  stroke="currentColor"
-                  strokeWidth="2.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          ) : (
-            <span className="nav-back nav-back--spacer" aria-hidden="true" />
-          )}
-          <button
-            type="button"
-            className="brand"
-            onClick={() => setScreen('intro')}
-          >
-            <img src="/favicon.svg" alt="" width={28} height={28} />
-            Chemo Resistance · Beads
-          </button>
-        </div>
-        <div className="top-nav__links">
-          <button
-            type="button"
-            className="linkish"
-            onClick={() => {
-              setReturnScreen(screen === 'explore' ? returnScreen : screen)
-              setScreen('explore')
-            }}
-          >
-            Explore
-          </button>
-          <button
-            type="button"
-            className="linkish"
-            onClick={() => {
-              setReturnScreen(screen === 'credits' ? returnScreen : screen)
-              setScreen('credits')
-            }}
-          >
-            Credits
-          </button>
-          <a
-            className="nav-name"
-            href={CREDITS.adapterUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {CREDITS.adapterName}
-          </a>
-        </div>
-      </nav>
+      <SiteNav
+        screen={screen}
+        canGoBack={screen !== 'intro'}
+        onBack={goBack}
+        onHome={() => setScreen('intro')}
+        onOpen={openSide}
+      />
 
       <main id="main">
         {screen === 'intro' ? (
@@ -131,10 +80,7 @@ function App() {
           <MappingScreen
             config={config}
             onContinue={() => setScreen('sim')}
-            onExplore={() => {
-              setReturnScreen('mapping')
-              setScreen('explore')
-            }}
+            onExplore={() => openSide('explore')}
           />
         ) : null}
         {screen === 'sim' ? (
@@ -147,21 +93,31 @@ function App() {
           />
         ) : null}
         {screen === 'results' ? (
-          <ResultsScreen runs={runs} onContinue={() => setScreen('questions')} />
+          <ResultsScreen
+            runs={runs}
+            onContinue={() => {
+              setReturnScreen('results')
+              setScreen('questions')
+            }}
+            onBeginRun={() => setScreen('mapping')}
+          />
         ) : null}
         {screen === 'questions' ? (
-          <QuestionsScreen onContinue={() => setScreen('modern')} />
+          <QuestionsScreen
+            answers={answers}
+            submitted={questionsSubmitted}
+            onAnswersChange={setAnswers}
+            onSubmittedChange={setQuestionsSubmitted}
+            onContinue={() => {
+              setReturnScreen('questions')
+              setScreen('modern')
+            }}
+          />
         ) : null}
         {screen === 'modern' ? (
           <ModernScreen
-            onExplore={() => {
-              setReturnScreen('modern')
-              setScreen('explore')
-            }}
-            onCredits={() => {
-              setReturnScreen('modern')
-              setScreen('credits')
-            }}
+            onExplore={() => openSide('explore')}
+            onCredits={() => openSide('credits')}
           />
         ) : null}
         {screen === 'explore' ? (

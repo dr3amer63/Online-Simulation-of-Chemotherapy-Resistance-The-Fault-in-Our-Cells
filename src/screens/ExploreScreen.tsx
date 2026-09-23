@@ -57,11 +57,10 @@ export function ExploreScreen({ base, onRerunFull }: Props) {
     <section className="screen">
       <header className="screen__header">
         <p className="eyebrow">Explore</p>
-        <h1>Grounded knobs only</h1>
+        <h1>Adjust the variables</h1>
         <p className="lede">
-          These controls stay inside the MIT bead lab: resistant colors (up to
-          2), growth-cup sizes (1-3), and chemo pull speed during each 30s
-          interval.
+          Change resistance, growth rates, and chemo pull speed, still within
+          the MIT bead lab rules, then preview or run again.
         </p>
       </header>
 

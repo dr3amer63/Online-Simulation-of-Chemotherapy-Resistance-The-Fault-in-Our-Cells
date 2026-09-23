@@ -6,11 +6,37 @@ import { meanCounts, startTumor, total, type RunResult } from '../sim/engine'
 interface Props {
   runs: RunResult[]
   onContinue: () => void
+  onBeginRun: () => void
 }
 
-export function ResultsScreen({ runs, onContinue }: Props) {
-  const mean = meanCounts(runs)
+export function ResultsScreen({ runs, onContinue, onBeginRun }: Props) {
   const start = startTumor()
+
+  if (runs.length === 0) {
+    return (
+      <section className="screen">
+        <header className="screen__header">
+          <p className="eyebrow">Results · triplicate</p>
+          <h1>What remained after chemo</h1>
+          <p className="lede">
+            No runs yet. Finish a triplicate (or open this page again after you
+            do) to compare leftover tumor mix across three replicates.
+          </p>
+        </header>
+        <div className="actions actions--wrap">
+          <button type="button" className="btn btn--primary" onClick={onBeginRun}>
+            Begin run
+          </button>
+          <button type="button" className="btn" onClick={onContinue}>
+            Questions
+          </button>
+        </div>
+        <SiteFooter />
+      </section>
+    )
+  }
+
+  const mean = meanCounts(runs)
   const maxBar = Math.max(
     ...runs.map((r) => total(r.final)),
     total(mean),

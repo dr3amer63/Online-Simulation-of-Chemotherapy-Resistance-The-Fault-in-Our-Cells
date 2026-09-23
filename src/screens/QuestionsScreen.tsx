@@ -1,20 +1,24 @@
-﻿import { useState } from 'react'
-import { SiteFooter } from '../components/SiteFooter'
+﻿import { SiteFooter } from '../components/SiteFooter'
 import { QUESTIONS } from '../content/questions'
 
 interface Props {
+  answers: Record<string, string>
+  submitted: boolean
+  onAnswersChange: (answers: Record<string, string>) => void
+  onSubmittedChange: (submitted: boolean) => void
   onContinue: () => void
 }
 
-export function QuestionsScreen({ onContinue }: Props) {
-  const [answers, setAnswers] = useState<Record<string, string>>(() =>
-    Object.fromEntries(QUESTIONS.map((q) => [q.id, ''])),
-  )
-  const [submitted, setSubmitted] = useState(false)
-
+export function QuestionsScreen({
+  answers,
+  submitted,
+  onAnswersChange,
+  onSubmittedChange,
+  onContinue,
+}: Props) {
   const update = (id: string, value: string) => {
     if (submitted) return
-    setAnswers((prev) => ({ ...prev, [id]: value }))
+    onAnswersChange({ ...answers, [id]: value })
   }
 
   return (
@@ -33,7 +37,7 @@ export function QuestionsScreen({ onContinue }: Props) {
         className="questions"
         onSubmit={(e) => {
           e.preventDefault()
-          setSubmitted(true)
+          onSubmittedChange(true)
         }}
       >
         {QUESTIONS.map((q, i) => (
@@ -43,7 +47,7 @@ export function QuestionsScreen({ onContinue }: Props) {
             </legend>
             <textarea
               rows={4}
-              value={answers[q.id]}
+              value={answers[q.id] ?? ''}
               onChange={(e) => update(q.id, e.target.value)}
               placeholder="Your answer…"
             />
@@ -71,7 +75,7 @@ export function QuestionsScreen({ onContinue }: Props) {
                 Continue
               </button>
               <p className="hint stay-hint">
-                Answers stay on this page until you leave.
+                Your answers stay saved if you leave and come back.
               </p>
             </>
           )}

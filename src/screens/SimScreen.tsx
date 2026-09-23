@@ -71,6 +71,7 @@ export function SimScreen({ config, onComplete }: Props) {
     null,
   )
   const [auto, setAuto] = useState(false)
+  const [autoPaused, setAutoPaused] = useState(false)
   const [deltaLine, setDeltaLine] = useState(
     () => `Start: ${total(startTumor())} cells`,
   )
@@ -169,7 +170,10 @@ export function SimScreen({ config, onComplete }: Props) {
     const stepIdx = phaseTrack.indexOf(step)
     if (stepIdx < 0 || stepIdx > progressIdx) return
 
-    if (auto) setAuto(false)
+    if (auto) {
+      setAuto(false)
+      setAutoPaused(true)
+    }
     showPhaseSnapshot(step, log)
   }
 
@@ -247,14 +251,19 @@ export function SimScreen({ config, onComplete }: Props) {
   const startOrPauseAuto = () => {
     if (auto) {
       setAuto(false)
+      setAutoPaused(true)
       return
     }
     if (reviewing) returnToProgress()
+    setAutoPaused(false)
     setAuto(true)
   }
 
   const advanceManual = () => {
-    if (auto) setAuto(false)
+    if (auto) {
+      setAuto(false)
+      setAutoPaused(true)
+    }
     advance()
   }
 
@@ -317,10 +326,12 @@ export function SimScreen({ config, onComplete }: Props) {
             title={
               auto
                 ? 'Pause'
-                : 'Play all cycles and all 3 runs without tapping'
+                : autoPaused
+                  ? 'Resume from where you left off'
+                  : 'Run all cycles and all 3 runs without tapping'
             }
           >
-            {auto ? 'Pause' : 'Play all'}
+            {auto ? 'Pause' : autoPaused ? 'Resume' : 'Auto run'}
           </button>
         </div>
       </header>
@@ -342,8 +353,10 @@ export function SimScreen({ config, onComplete }: Props) {
           <div className="panel panel--status">
             <p className="phase-hint">
               {auto
-                ? 'Playing through to the end — Pause anytime'
-                : 'Tap a reached step to check its numbers'}
+                ? 'Playing through to the end. Pause anytime'
+                : autoPaused
+                  ? 'Paused. Resume to continue, or step manually'
+                  : 'Tap a reached step to check its numbers'}
             </p>
             <ol className="phase-steps" aria-label="Cycle phases">
               {steps.map((step) => {
