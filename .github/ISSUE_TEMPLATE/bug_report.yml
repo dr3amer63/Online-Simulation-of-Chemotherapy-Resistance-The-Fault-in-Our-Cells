@@ -1,0 +1,44 @@
+name: Bug report
+description: Something is broken or incorrect in the lab
+title: '[bug] '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. This is an unofficial educational port of the MIT BLOSSOMS bead lab.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps help a lot
+      placeholder: |
+        1. Open …
+        2. Click …
+        3. See …
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser / device
+      placeholder: e.g. Chrome 131 on Windows, iPhone Safari
+  - type: textarea
+    id: notes
+    attributes:
+      label: Extra notes
+      description: Screenshots, console errors, or whether engine rules seemed wrong

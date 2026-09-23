@@ -80,14 +80,20 @@ npm run preview
 
 ## Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+Contributions are welcome. Please read:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md): setup, PR checklist, lab-faithfulness rules
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
 Short version:
 
-1. Fork the repo and create a branch.
-2. Keep simulation rules faithful to the MIT bead lab unless you document an intentional extension.
-3. Run `npm run lint` and `npm run build`.
+1. Fork the repo and create a branch from `main`.
+2. Keep engine rules faithful to the MIT bead lab unless you document an intentional extension (this port’s default is **10 cycles** per run).
+3. Run `npm run lint`, `npm run build`, and `npm run smoke`.
 4. Open a PR with a clear description of the change.
+
+CI runs lint, smoke, and build on pull requests to `main`.
+
 
 ## Attribution and naming
 
